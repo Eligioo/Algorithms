@@ -11,16 +11,22 @@ namespace EntryPoint
             InitializeComponent();
         }
 
+        private void eExit(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+                this.Close();
+        }
+
         private void btnInsertionSort_Click(object sender, EventArgs e)
         {
             InsertionSort.Run InsertionSort = new InsertionSort.Run();
             Process.Start(InsertionSort.returnPath() + @"\InsertionSort.exe");
         }
 
-        private void eExit(object sender, KeyEventArgs e)
+        private void btnMergeSort_Click(object sender, EventArgs e)
         {
-            if (e.KeyCode == Keys.Escape)
-                this.Close();
+            MergeSort.Run MergeSort = new MergeSort.Run();
+            Process.Start(MergeSort.returnPath() + @"\MergeSort.exe");
         }
     }
 }
