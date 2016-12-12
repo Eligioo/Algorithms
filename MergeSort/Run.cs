@@ -17,48 +17,49 @@ namespace MergeSort
             Console.ReadLine();
         }
 
-        private static void MergeSort(int[] unsortedArray, int leftIndex, int rightIndex)
+        private static void MergeSort(int[] unsortedArray, int LeftIndex, int RightIndex)
         {
-            if (leftIndex < rightIndex)
+            if (LeftIndex < RightIndex)
             {
-                int middleIndex = (leftIndex + rightIndex) / 2;
-                MergeSort(unsortedArray, leftIndex, middleIndex);
-                MergeSort(unsortedArray, middleIndex + 1, rightIndex);
-                Merge(unsortedArray, leftIndex, middleIndex, rightIndex);
+                int MiddleIndex = (LeftIndex + RightIndex) / 2;
+                MergeSort(unsortedArray, LeftIndex, MiddleIndex);
+                MergeSort(unsortedArray, MiddleIndex + 1, RightIndex);
+                Merge(unsortedArray, LeftIndex, MiddleIndex, RightIndex);
             }
+
         }
 
-        private static void Merge(int[] unsortedArray, int leftIndex, int middleIndex, int rightIndex)
+        private static void Merge(int[] UnsortedArray, int LeftIndex, int MiddleIndex, int RightIndex)
         {
-            int lengthLeft = middleIndex - leftIndex + 1;
-            int lengthRight = rightIndex - middleIndex;
-            int[] leftArray = new int[lengthLeft + 1];
-            int[] rightArray = new int[lengthRight + 1];
-            for (int i = 0; i < lengthLeft; i++)
-            {
-                leftArray[i] = unsortedArray[leftIndex + i];
-            }
-            for (int j = 0; j < lengthRight; j++)
-            {
-                rightArray[j] = unsortedArray[middleIndex + j + 1];
-            }
-            leftArray[lengthLeft] = Int32.MaxValue;
-            rightArray[lengthRight] = Int32.MaxValue;
+            int LeftLength = MiddleIndex - LeftIndex + 1;
+            int RightLength = RightIndex - MiddleIndex;
+            int[] LeftArray = new int[LeftLength + 1];
+            int[] RightArray = new int[RightLength + 1];
+
+            for (int i = 0; i < LeftLength; i++)
+                LeftArray[i] = UnsortedArray[LeftIndex + i];
+
+            for (int j = 0; j < RightLength; j++)
+                RightArray[j] = UnsortedArray[MiddleIndex + j + 1];
+
+            LeftArray[LeftLength] = Int32.MaxValue;
+            RightArray[RightLength] = Int32.MaxValue;
             int iIndex = 0;
             int jIndex = 0;
-            for (int k = leftIndex; k <= rightIndex; k++)
+            for (int k = LeftIndex; k <= RightIndex; k++)
             {
-                if (leftArray[iIndex] <= rightArray[jIndex])
+                if (LeftArray[iIndex] <= RightArray[jIndex])
                 {
-                    unsortedArray[k] = leftArray[iIndex];
+                    UnsortedArray[k] = LeftArray[iIndex];
                     iIndex++;
                 }
                 else
                 {
-                    unsortedArray[k] = rightArray[jIndex];
+                    UnsortedArray[k] = RightArray[jIndex];
                     jIndex++;
                 }
             }
+
         }
 
         private static void Write(string prefix, int[] array)
